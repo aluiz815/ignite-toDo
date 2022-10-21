@@ -1,0 +1,86 @@
+.taskWrapper {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    background: var(--gray-500);
+    padding: 1rem 3.25rem;
+    border-radius: 8px;
+    position: relative;
+    
+}
+
+.taskInput {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.taskInput > p {
+   font-weight: 400;
+   color: var(--gray-100);
+   font-size: 0.875rem;
+}
+
+.taskWrapper > button {
+    background:transparent;
+    cursor: pointer;
+}
+
+.taskWrapper > button > svg {
+   color: var(--gray-300);
+}
+
+input[type="checkbox"] {
+    height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+label {
+	cursor: pointer;
+	width: 1.5rem;
+	height: 1.5rem;
+	background: transparent;
+    border: 2px solid var(--blue);
+	border-radius: 50%;
+	position: absolute;
+    left: 1.5rem;
+    transition: background 0.1s,border 0.1s;
+}
+
+
+
+input:checked + label {
+	background: var(--purple-dark);
+    border: 2px solid var(--purple-dark);
+}
+
+input:checked + label + svg{
+    opacity: 1;
+}
+
+input:checked + label + svg + p{
+    color: var(--gray-300);
+    text-decoration:line-through;
+}
+
+
+.taskInput > svg {
+    position: absolute;
+    color: var(--gray-100);
+    left: 2rem;
+    top: 1.9rem;
+    opacity: 0;
+}
+
+
+
+
+
+
+
+
+
+
