@@ -1,10 +1,35 @@
 import styles from './style.module.css';
 import ClipboardIcon from '../../assets/clipboard.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Task } from '../Task';
 export const Card = () => {
 
-    const [tasks,setTasks] = useState(3)
+
+  interface TaskProps {
+    finished:boolean;
+    content:string;
+  }
+
+    const [tasks,setTasks] = useState<TaskProps[]>([])
+    
+    useEffect(()=>{
+
+      setTasks([
+        {
+          finished:false,
+          content:'Andre teste 1'
+        },
+        {
+          finished:true,
+          content:'Andre teste 2'
+        },
+        {
+          finished:false,
+          content:'Andre teste 3'
+        },
+      ])
+
+    },[])
 
   return (
     <div className={styles.contentWrapper}>
@@ -16,19 +41,20 @@ export const Card = () => {
             </div>
             <div className={styles.cardHeaderItem}>
                 <p>Concluídas</p>
-                <span>2 de 5</span>
+                <span>2 de {tasks.length}</span>
             </div>
           </div>
           <div className={styles.cardBodyWrapper}>
             <div className={styles.cardBodyContainer}>
-                {
-            tasks == 3 ? (
-              <>
-                <Task id='1' finished content='Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.'/>
-                <Task id='2' finished content='Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.'/>
-                <Task id='3' content='Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.'/>
-                <Task id='4' content='Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.'/>
-                </>
+                {tasks.length > 0 ? (
+      
+                   tasks.map((task,idx) => task && (
+                    <>
+                      <Task id={idx} key={idx} finished={task.finished} content={task.content}/>
+                      </>
+                      )
+                  )
+           
             ) : (
                 <>
                     <img src={ClipboardIcon} alt="Clipboard Icon" />
