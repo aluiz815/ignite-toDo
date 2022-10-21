@@ -1,13 +1,20 @@
 import styles from './style.module.css';
 import { Trash, Check } from 'phosphor-react'
-export const Task = () => {
+
+interface TaskProps  {
+  id:string;
+  finished?:boolean;
+  content:string;
+}
+
+export const Task = ({id,finished = false,content}:TaskProps) => {
   return (
     <div className={styles.taskWrapper}>
       <div className={styles.taskInput} >
-        <input  type="checkbox" id='switch'/>
-        <label htmlFor="switch"/>
+        <input checked={finished}  type="checkbox" id={id}/>
+        <label htmlFor={id}/>
         <Check size={8}/>
-        <p>Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.</p>
+        <p>{content}</p>
       </div>
       <button><Trash size={24}/></button>
     </div>

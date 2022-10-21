@@ -45,3 +45,12 @@
 .createButton:not(:disabled):hover {
     background: var(--blue);
 }
+
+@media(max-width:768px) {
+    .inputWrapper {
+       padding: 1rem;
+    }
+    .createButton {
+        padding: 0.5rem;
+    }
+}

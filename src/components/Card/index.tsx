@@ -16,7 +16,7 @@ export const Card = () => {
             </div>
             <div className={styles.cardHeaderItem}>
                 <p>Concluídas</p>
-                <span>0</span>
+                <span>2 de 5</span>
             </div>
           </div>
           <div className={styles.cardBodyWrapper}>
@@ -24,10 +24,10 @@ export const Card = () => {
                 {
             tasks == 3 ? (
               <>
-                <Task/>
-                <Task/>
-                <Task/>
-                <Task/>
+                <Task id='1' finished content='Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.'/>
+                <Task id='2' finished content='Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.'/>
+                <Task id='3' content='Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.'/>
+                <Task id='4' content='Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.'/>
                 </>
             ) : (
                 <>
