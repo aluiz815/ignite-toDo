@@ -2,16 +2,18 @@ import styles from './style.module.css';
 import ClipboardIcon from '../../assets/clipboard.svg';
 import { useEffect, useState } from 'react';
 import { Task } from '../Task';
+import { Input } from '../Input';
 export const Card = () => {
 
 
   interface TaskProps {
     finished:boolean;
     content:string;
+    id?:number;
   }
 
     const [tasks,setTasks] = useState<TaskProps[]>([])
-    
+
     useEffect(()=>{
 
       setTasks([
@@ -28,29 +30,54 @@ export const Card = () => {
           content:'Andre teste 3'
         },
       ])
-
     },[])
 
+
+    function handleCreateNewTask(task:TaskProps) {
+      setTasks([...tasks,task])
+    }
+
+    function handleDelete(tasksToDelete:string) {
+      const taskWithoutDeletedOne = tasks.filter(task => {
+          return task.content != tasksToDelete;
+      })
+      setTasks(taskWithoutDeletedOne);
+    }
+
+    function getCompletedTasks() {
+      const taskCompleted = tasks.filter(task => task.finished)
+      return taskCompleted.length
+    }
+
+    function UpdateTask(taskId:any,newKeyValue:any)
+    {
+      const newTaskList = [...tasks]
+      newTaskList[taskId].finished = newKeyValue; 
+      setTasks(newTaskList)
+      getCompletedTasks()
+    }
+
   return (
+    <>
+    <Input handleCreateNewTask={handleCreateNewTask}/>
     <div className={styles.contentWrapper}>
         <div className={styles.cardContainer}>
           <div className={styles.cardHeader}>
             <div className={styles.cardHeaderItem}>
                 <p>Tarefas criadas</p>
-                <span>0</span>
+                <span>{tasks.length}</span>
             </div>
             <div className={styles.cardHeaderItem}>
                 <p>Concluídas</p>
-                <span>2 de {tasks.length}</span>
+                <span>{getCompletedTasks()} de {tasks.length}</span>
             </div>
           </div>
           <div className={styles.cardBodyWrapper}>
             <div className={styles.cardBodyContainer}>
                 {tasks.length > 0 ? (
-      
                    tasks.map((task,idx) => task && (
                     <>
-                      <Task id={idx} key={idx} finished={task.finished} content={task.content}/>
+                      <Task handleDelete={handleDelete} UpdateTask={UpdateTask} id={idx} key={idx} finished={task.finished} content={task.content}/>
                       </>
                       )
                   )
@@ -70,5 +97,6 @@ export const Card = () => {
           </div>
         </div>
       </div>
+      </>
   )
 }

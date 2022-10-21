@@ -6,7 +6,6 @@ export function App() {
   return (
     <>
       <Header/>
-      <Input/>
       <Card/>
     </>
   )

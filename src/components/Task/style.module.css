@@ -71,7 +71,7 @@ input:checked + label + svg + p{
     position: absolute;
     color: var(--gray-100);
     left: 2rem;
-    top: 1.9rem;
+    top: 1.6rem;
     opacity: 0;
 }
 
